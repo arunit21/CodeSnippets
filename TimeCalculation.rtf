@@ -1,0 +1,42 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red92\green38\blue153;\red46\green13\blue110;\red28\green0\blue207;
+\red170\green13\blue145;\red196\green26\blue22;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \
+\pard\tx529\pardeftab529\pardirnatural
+
+\f1\fs22 \cf0 \CocoaLigature0 + (\cf2 NSString\cf0  *)relativeDateStringForDate:(\cf2 NSDate\cf0  *)date \{\
+    \
+    \cf2 NSCalendarUnit\cf0  units = \cf3 NSDayCalendarUnit\cf0  | \cf3 NSWeekOfYearCalendarUnit\cf0  | \cf3 NSMonthCalendarUnit\cf0  | \cf3 NSYearCalendarUnit\cf0 ;\
+    \
+    \cf2 NSDateComponents\cf0  *components = [[\cf2 NSCalendar\cf0  \cf3 currentCalendar\cf0 ] \cf3 components\cf0 :units\
+                                                                   \cf3 fromDate\cf0 :date\
+                                                                     \cf3 toDate\cf0 :[\cf2 NSDate\cf0  \cf3 date\cf0 ]\
+                                                                    \cf3 options\cf0 :\cf4 0\cf0 ];\
+    \cf5 if\cf0  (components.\cf3 year\cf0  > \cf4 0\cf0 ) \{\
+        \cf5 return\cf0  [\cf2 NSString\cf0  \cf3 stringWithFormat\cf0 :\cf6 @"%ld years ago"\cf0 , (\cf5 long\cf0 )components.\cf3 year\cf0 ];\
+    \} \cf5 else\cf0  \cf5 if\cf0  (components.\cf3 month\cf0  > \cf4 0\cf0 ) \{\
+        \cf5 return\cf0  [\cf2 NSString\cf0  \cf3 stringWithFormat\cf0 :\cf6 @"%ld months ago"\cf0 , (\cf5 long\cf0 )components.\cf3 month\cf0 ];\
+    \} \cf5 else\cf0  \cf5 if\cf0  (components.\cf3 weekOfYear\cf0  > \cf4 0\cf0 ) \{\
+        \cf5 return\cf0  [\cf2 NSString\cf0  \cf3 stringWithFormat\cf0 :\cf6 @"%ld weeks ago"\cf0 , (\cf5 long\cf0 )components.\cf3 weekOfYear\cf0 ];\
+    \} \cf5 else\cf0  \cf5 if\cf0  (components.\cf3 day\cf0  > \cf4 0\cf0 ) \{\
+        \cf5 if\cf0  (components.\cf3 day\cf0  > \cf4 1\cf0 ) \{\
+            \cf5 return\cf0  [\cf2 NSString\cf0  \cf3 stringWithFormat\cf0 :\cf6 @"%ld days ago"\cf0 , (\cf5 long\cf0 )components.\cf3 day\cf0 ];\
+        \} \cf5 else\cf0  \{\
+            \cf5 return\cf0  \cf6 @"Yesterday"\cf0 ;\
+        \}\
+    \} \cf5 else\cf0  \{\
+        \cf5 if\cf0 (components.\cf3 hour\cf0  < \cf4 1\cf0 ) \{\
+            \cf5 if\cf0 (components.\cf3 minute\cf0  < \cf4 1\cf0 )\
+                \cf5 return\cf0  [\cf2 NSString\cf0  \cf3 stringWithFormat\cf0 :\cf6 @"%ld secs ago"\cf0 , (\cf5 long\cf0 )components.\cf3 second\cf0 ];\
+            \cf5 else\cf0 \
+                \cf5 return\cf0  [\cf2 NSString\cf0  \cf3 stringWithFormat\cf0 :\cf6 @"%ld minutes ago"\cf0 , (\cf5 long\cf0 )components.\cf3 minute\cf0 ];\
+        \} \cf5 else\cf0  \{\
+            \cf5 return\cf0  [\cf2 NSString\cf0  \cf3 stringWithFormat\cf0 :\cf6 @"%ld hours ago"\cf0 , (\cf5 long\cf0 )components.\cf3 hour\cf0 ];\
+        \}\
+    \}\
+\}\
+}

@@ -1,0 +1,34 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red92\green38\blue153;\red170\green13\blue145;\red196\green26\blue22;
+\red100\green56\blue32;\red28\green0\blue207;\red46\green13\blue110;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab529
+\pard\tx529\pardeftab529\pardirnatural
+
+\f0\fs22 \cf0 \CocoaLigature0 \
+\cf2 CLLocationCoordinate2D\cf0  loc = [\cf3 self\cf0  geoCodeUsingAddress:\cf4 @"Taj mahal, India"\cf0 ];\
+\cf5 NSLog\cf0 (\cf4 @"\\n Latitude = %f,\\n Longitude = %f"\cf0 , loc.latitude, loc.longitude);\
+\
+- (\cf2 CLLocationCoordinate2D\cf0 ) geoCodeUsingAddress:(\cf2 NSString\cf0  *)address\
+\{\
+    \cf3 double\cf0  latitude = \cf6 0\cf0 , longitude = \cf6 0\cf0 ;\
+    \cf2 NSString\cf0  *esc_addr =  [address \cf7 stringByAddingPercentEscapesUsingEncoding\cf0 :\cf7 NSUTF8StringEncoding\cf0 ];\
+    \cf2 NSURL\cf0  *url = [\cf2 NSURL\cf0  \cf7 URLWithString\cf0 :[\cf2 NSString\cf0  \cf7 stringWithFormat\cf0 :\cf4 @"https://maps.googleapis.com/maps/api/place/textsearch/json?query=%@&type=&sensor=true&key=AIzaSyCFiFW68ml3D9ydBfoD8SXzZDlU42yJSG0"\cf0 , esc_addr]];\
+    \cf5 NSLog\cf0 (\cf4 @"%@"\cf0 , url);\
+    \cf2 NSString\cf0  *result = [\cf2 NSString\cf0  \cf7 stringWithContentsOfURL\cf0 :url \cf7 encoding\cf0 :\cf7 NSUTF8StringEncoding\cf0  \cf7 error\cf0 :\cf3 NULL\cf0 ];\
+    \cf3 if\cf0  (result) \{\
+        \cf2 NSScanner\cf0  *scanner = [\cf2 NSScanner\cf0  \cf7 scannerWithString\cf0 :result];\
+        \cf3 if\cf0  ([scanner \cf7 scanUpToString\cf0 :\cf4 @"\\"lat\\" :"\cf0  \cf7 intoString\cf0 :\cf3 nil\cf0 ] && [scanner \cf7 scanString\cf0 :\cf4 @"\\"lat\\" :"\cf0  \cf7 intoString\cf0 :\cf3 nil\cf0 ]) \{\
+            [scanner \cf7 scanDouble\cf0 :&latitude];\
+            \cf3 if\cf0  ([scanner \cf7 scanUpToString\cf0 :\cf4 @"\\"lng\\" :"\cf0  \cf7 intoString\cf0 :\cf3 nil\cf0 ] && [scanner \cf7 scanString\cf0 :\cf4 @"\\"lng\\" :"\cf0  \cf7 intoString\cf0 :\cf3 nil\cf0 ]) \{\
+                [scanner \cf7 scanDouble\cf0 :&longitude];\
+            \}\
+        \}\
+    \}\
+    \cf2 CLLocationCoordinate2D\cf0  center;\
+    center.\cf2 latitude\cf0  = latitude;\
+    center.\cf2 longitude\cf0  = longitude;\
+    \cf3 return\cf0  center;\
+\}\
+}

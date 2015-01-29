@@ -1,0 +1,15 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf200
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red28\green0\blue207;\red170\green13\blue145;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab529
+\pard\tx529\pardeftab529\pardirnatural
+
+\f0\fs22 \cf0 \CocoaLigature0     NSTimeInterval duration = \cf2 10.0f\cf0 ;\
+    CGFloat angle = M_PI / \cf2 2.0f\cf0 ;\
+    CGAffineTransform rotateTransform = CGAffineTransformRotate(\cf3 self\cf0 .propellerImageView.transform, angle);\
+    \
+    [UIView animateWithDuration:duration delay:\cf2 0\cf0  options:UIViewAnimationOptionRepeat| UIViewAnimationOptionCurveLinear animations:^\{\
+        \cf3 self\cf0 .propellerImageView.transform = rotateTransform;\
+    \} completion:\cf3 nil\cf0 ];\
+}

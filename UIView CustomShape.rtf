@@ -1,0 +1,29 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red92\green38\blue153;\red46\green13\blue110;\red28\green0\blue207;
+\red170\green13\blue145;\red38\green71\blue75;\red63\green110\blue116;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab529
+\pard\tx529\pardeftab529\pardirnatural
+
+\f0\fs22 \cf2 \CocoaLigature0 UIView\cf0  *imageViewBackgroundView = [[\cf2 UIView\cf0  \cf3 alloc\cf0 ]\cf3 initWithFrame\cf0 :\cf3 CGRectMake\cf0 (\cf4 0\cf0 , \cf4 0\cf0 , \cf4 43\cf0 , \cf4 43\cf0 )];\
+\
+imageViewBackgroundView.\cf2 layer\cf0 .\cf2 mask\cf0  = [\cf5 self\cf0  \cf6 changeTheShape\cf0 :imageViewBackgroundView.\cf2 bounds\cf0 ];\
+     \
+        \cf5 self\cf0 .\cf7 profileImageView\cf0 .\cf2 layer\cf0 .\cf2 mask\cf0  = [\cf5 self\cf0  \cf6 changeTheShape\cf0 :\cf5 self\cf0 .\cf7 profileImageView\cf0 .\cf2 bounds\cf0 ];\
+\
+\
+   
+\f1\fs24 \CocoaLigature1 \
+
+\f0\fs22 \CocoaLigature0 -(\cf2 CAShapeLayer\cf0  *)changeTheShape:(\cf2 CGRect\cf0 )bounds\
+\{\
+    \cf2 UIBezierPath\cf0  *maskPath;\
+    maskPath = [\cf2 UIBezierPath\cf0  \cf3 bezierPathWithRoundedRect\cf0 :bounds \cf3 byRoundingCorners\cf0 :(\cf3 UIRectCornerTopRight\cf0  | \cf3 UIRectCornerBottomRight\cf0 ) \cf3 cornerRadii\cf0 :\cf3 CGSizeMake\cf0 (bounds.\cf2 size\cf0 .\cf2 width\cf0 /\cf4 2.0\cf0 , bounds.\cf2 size\cf0 .\cf2 width\cf0 /\cf4 2.0\cf0 )];\
+    \
+    \cf2 CAShapeLayer\cf0  *maskLayer = [[\cf2 CAShapeLayer\cf0  \cf3 alloc\cf0 ] \cf3 init\cf0 ];\
+    maskLayer.\cf2 frame\cf0  = bounds;\
+    maskLayer.\cf2 path\cf0  = maskPath.\cf2 CGPath\cf0 ;\
+    \cf5 return\cf0  maskLayer;\
+\}\
+}

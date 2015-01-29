@@ -1,0 +1,24 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf200
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red170\green13\blue145;\red92\green38\blue153;
+\red46\green13\blue110;\red100\green56\blue32;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww8920\viewh19680\viewkind0
+\deftab529
+\pard\tx529\pardeftab529\pardirnatural
+
+\f0\fs22 \cf2 \CocoaLigature0 // This code assumes label has the desired text and its frame is already set to the desired width.\cf0 \
+- (\cf3 int\cf0 )lineCountForLabel:(\cf4 UILabel\cf0  *)label \{\
+    \cf4 CGSize\cf0  constrain = \cf5 CGSizeMake\cf0 (label.\cf4 bounds\cf0 .\cf4 size\cf0 .\cf4 width\cf0 , \cf6 FLT_MAX\cf0 );\
+    \cf4 CGSize\cf0  size = [label.\cf4 text\cf0  \cf5 sizeWithFont\cf0 :label.\cf4 font\cf0  \cf5 constrainedToSize\cf0 :constrain \cf5 lineBreakMode\cf0 :\cf5 UILineBreakModeWordWrap\cf0 ];\
+    \
+    \cf3 return\cf0  \cf5 ceil\cf0 (size.\cf4 height\cf0  / label.\cf4 font\cf0 .\cf4 lineHeight\cf0 );\
+\}\
+\
+\cf2 //If all you want is to determine the required height for the label based on its text and current width, then change this to:\cf0 \
+- (\cf4 CGSize\cf0 )sizeForLabel:(\cf4 UILabel\cf0  *)label \{\
+    \cf4 CGSize\cf0  constrain = \cf5 CGSizeMake\cf0 (label.\cf4 bounds\cf0 .\cf4 size\cf0 .\cf4 width\cf0 , \cf6 FLT_MAX\cf0 );\
+    \cf4 CGSize\cf0  size = [label.\cf4 text\cf0  \cf5 sizeWithFont\cf0 :label.\cf4 font\cf0  \cf5 constrainedToSize\cf0 :constrain \cf5 lineBreakMode\cf0 :\cf5 UILineBreakModeWordWrap\cf0 ];\
+    \
+    \cf3 return\cf0  size;\
+\}\
+}
